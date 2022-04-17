@@ -1,0 +1,40 @@
+---
+title: "CBurgan_Complaints_MiniProj"
+author: "Cate Burgan"
+date: "4/17/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(lubridate)
+library(janitor)
+library(readxl)
+library(writexl)
+
+complaints <- read_csv("/Users/cateburgan/Downloads/complaints.rds")
+
+```
+
+
+
+
+
+```{r}
+complaints %>%
+  count(company, sort = TRUE)
+```
+
+
+
+```{r}
+complaints %>%
+  count(issue, sort = TRUE)
+```
+```{r}
+complaints %>%
+  count(mm_yy_sent_to_company, sort = TRUE)
+```
+

@@ -1,0 +1,45 @@
+---
+title: "Consumer Financial Protection Bureau complaints from March-December 2020"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(lubridate)
+library(janitor)
+library(readxl)
+library(writexl)
+
+complaints <- readRDS("complaints.rds")
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+
+The company with the most complaints:
+```{r}
+complaints %>%
+  count(company, sort = TRUE)
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+The issues that were reported most often:
+```{r}
+complaints %>%
+  count(issue, sort = TRUE)
+```
+
+
+When the most complaints occurred: 
+```{r}
+complaints %>%
+  count(mm_yy_sent_to_company, sort = TRUE)
+```
+
