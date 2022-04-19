@@ -14,7 +14,7 @@ library(janitor)
 library(readxl)
 library(writexl)
 
-complaints <- read_csv("/Users/cateburgan/Downloads/complaints.rds")
+complaints <- readRDS("complaints.rds")
 
 ```
 
