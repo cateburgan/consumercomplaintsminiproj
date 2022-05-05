@@ -1,5 +1,5 @@
 ---
-title: "Consumer Financial Protection Bureau complaints from March-December 2020"
+title: "Consumer Financial Protection Bureau complaints from March-January 2021"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -21,11 +21,11 @@ library(writexl)
 complaints <- readRDS("complaints.rds")
 ```
 
-Column {data-width=650}
+Column {data-width=350}
 -----------------------------------------------------------------------
 
 
-The company with the most complaints:
+
 ```{r}
 most_complaints <- complaints %>%
   count(company, sort = TRUE)
@@ -37,23 +37,12 @@ kable(d1,
       )
 ```
 
-Column {data-width=350}
+Column {data-width=650}
 -----------------------------------------------------------------------
 
-The issues that were reported most often:
+
 ```{r}
-most_issues <- complaints %>%
-  count(issue, sort = TRUE)
 
-d2 = head(most_issues, 10)
-
-kable(d2,
-      caption = "Top 10 Most Reported Issues",)
-```
-
-
-When the most complaints occurred: 
-```{r}
 date_of_complaints <- complaints %>%
   count(mm_yy_sent_to_company, sort = TRUE)
 
@@ -67,8 +56,32 @@ ggplot(date_of_complaints, aes(x = mm_yy_sent_to_company, y = n)) +
        caption = "Source: Consumer Financial Protection Bureau")
 ```
 
+Column {data-width=650}
+-----------------------------------------------------------------------
+```{r}
+most_issues <- complaints %>%
+  count(issue, sort = TRUE)
+
+d2 = head(most_issues, 10)
+
+kable(d2,
+      caption = "Top 10 Most Reported Issues",)
+```
+
 
 ```{r}
+state <- complaints %>%
+  count(state, sort = TRUE)
 
+d3 = head(state, 20)
+
+ggplot(d3, aes(x = state, y = n)) + 
+  geom_col(color = "#9ebcda", fill = "#9ebcda") +
+  coord_flip() +
+  scale_y_continuous(name = "Number of Complaints", labels = scales::comma) +
+  scale_x_discrete(name = "State") +
+  labs(title = "Consumer Complaints by Top 20 States", 
+       subtitle = "March 2020-January 2021",
+       caption = "Source: Consumer Financial Protection Bureau")
 ```
 
