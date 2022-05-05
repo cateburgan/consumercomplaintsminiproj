@@ -7,6 +7,10 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+library(data.table)
+library(dplyr)
+library(kableExtra)
+library(tidyr)
 library(flexdashboard)
 library(tidyverse)
 library(lubridate)
@@ -23,8 +27,15 @@ Column {data-width=650}
 
 The company with the most complaints:
 ```{r}
-complaints %>%
+most_complaints <- complaints %>%
   count(company, sort = TRUE)
+  head(most_complaints, 10)
+  
+d1 = head(most_complaints, 10)
+
+kable(d1,
+      caption = "Company with the Most Complaints"
+      )
 ```
 
 Column {data-width=350}
@@ -39,7 +50,20 @@ complaints %>%
 
 When the most complaints occurred: 
 ```{r}
-complaints %>%
+ggplot(date_of_complaints, aes(x = mm_yy_sent_to_company, y = n)) + 
+  geom_col(color = "#9ebcda", fill = "#9ebcda") +
+  coord_flip() +
+  scale_y_continuous(name = "Number of Complaints", labels = scales::comma) +
+  scale_x_discrete(name = "Date") +
+  labs(title = "Consumer Complaints", 
+       subtitle = "March 2020-January 2021",
+       caption = "Source: Consumer Financial Protection Bureau")
+date_of_complaints <- complaints %>%
   count(mm_yy_sent_to_company, sort = TRUE)
+```
+
+
+```{r}
+
 ```
 
