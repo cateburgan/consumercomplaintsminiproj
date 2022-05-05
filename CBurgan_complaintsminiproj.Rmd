@@ -33,7 +33,7 @@ most_complaints <- complaints %>%
 d1 = head(most_complaints, 10)
 
 kable(d1,
-      caption = "Company with the Most Complaints"
+      caption = "Top 10 Companies with the Most Complaints"
       )
 ```
 
@@ -42,8 +42,13 @@ Column {data-width=350}
 
 The issues that were reported most often:
 ```{r}
-complaints %>%
+most_issues <- complaints %>%
   count(issue, sort = TRUE)
+
+d2 = head(most_issues, 10)
+
+kable(d2,
+      caption = "Top 10 Most Reported Issues",)
 ```
 
 
