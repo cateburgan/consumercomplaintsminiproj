@@ -22,7 +22,11 @@ complaints <- readRDS("complaints.rds")
 ```
 About
 ==================
+Data from the Consumer Complaint Database by the Consumer Financial Protection Bureau shows consumer complaints at the height of the COVID-19 pandemic from March 2020 to January 2021.
 
+The data from this 10 month period showed that the most complaints were filed in December 2021. Experian Information Solutions Inc. had the most complaints filed against them. "Incorrect information on your report" was the #1 complaint by consumers. Florida was the state that had the most complaints. 
+
+The Visualizations of Data page shows two different tables and two different charts explaining these findings. 
 
 
 Visualizations of Data
