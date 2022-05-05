@@ -20,7 +20,13 @@ library(writexl)
 
 complaints <- readRDS("complaints.rds")
 ```
+About
+==================
 
+
+
+Visualizations of Data
+==================
 Column {data-width=350}
 -----------------------------------------------------------------------
 
